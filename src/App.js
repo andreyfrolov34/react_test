@@ -14,20 +14,28 @@ class App extends Component {
        pageTitle: 'Component page'
    };
 
-
-
-   changeTitleHandler = (pageTitle) => {
+   deleteHandler(i) {// при использовании обычной ф-ии, в компоненте нужно исп-ть bind(this) или исп-ть: () => {}
+       const newCars = this.state.cars.concat()// копируем в newCars state.cars
+       newCars.splice(i, 1)
        this.setState({
-           pageTitle
+           cars: newCars
        })
-   };
+   }
 
    handlerVisual = () => {
        this.setState({
            showCars : !this.state.showCars
        })
    };
-
+    onChangeName(name, i) {
+        const car = this.state.cars[i] // находим элемент по индексу
+        car.name = name //  вполе name элемента присваем новое значение из инпута
+        const newCars = [...this.state.cars] // спред опрератор разворачивает  state.cars в переменую.(клонирует)
+        newCars[i] = car // в новом массиве(в элементе по индексу) присваиваем новый элемент...TODO
+        this.setState({ // записываем все значения в setState (!!! примое присваивание запрещено !!!)
+            cars: newCars
+        })
+    }
 
 
 
@@ -46,7 +54,8 @@ class App extends Component {
                       key={i}
                       name={car.name}
                       year={car.year}
-                      onChangeTitle={() => this.changeTitleHandler(car.name)}
+                      onChangeName={(event) => this.onChangeName(event.target.value, i)}
+                      onDelete={this.deleteHandler.bind(this, i)}
                   />
               )
           })
