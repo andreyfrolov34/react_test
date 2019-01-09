@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
 import Car from './Car/Car'
-import Heading from './Car/Heading'
 
 class App extends Component {
    state = {
@@ -15,23 +14,23 @@ class App extends Component {
    };
 
    deleteHandler(i) {// при использовании обычной ф-ии, в компоненте нужно исп-ть bind(this) или исп-ть: () => {}
-       const newCars = this.state.cars.concat()// копируем в newCars state.cars
+       const newCars = this.state.cars.concat()// копируем в newCars state.cars (еще сппособ клонирования state в новую переьенную!!!)
        newCars.splice(i, 1)
        this.setState({
            cars: newCars
        })
    }
 
-   handlerVisual = () => {
+   toggleCarsHAndler = () => {
        this.setState({
            showCars : !this.state.showCars
        })
    };
     onChangeName(name, i) {
         const car = this.state.cars[i] // находим элемент по индексу
-        car.name = name //  вполе name элемента присваем новое значение из инпута
+        car.name = name //  в поле name элемента присваем новое значение из инпута
         const newCars = [...this.state.cars] // спред опрератор разворачивает  state.cars в переменую.(клонирует)
-        newCars[i] = car // в новом массиве(в элементе по индексу) присваиваем новый элемент...TODO
+        newCars[i] = car // в новом массиве(в элементе по индексу) присваиваем новый элемент... TODO
         this.setState({ // записываем все значения в setState (!!! примое присваивание запрещено !!!)
             cars: newCars
         })
@@ -63,21 +62,19 @@ class App extends Component {
 
     return (
       <div style={divStyle}>
-        <Heading
-            title={this.state.pageTitle}
-            handlerVisual={this.handlerVisual.bind(this)}
-        />
-          {/*{this.state.showCars ? cars.map((car, i) => {*/}
-              {/*return (*/}
-                  {/*<Car*/}
-                    {/*key={i}*/}
-                    {/*name={car.name}*/}
-                    {/*year={car.year}*/}
-                    {/*onChangeTitle={() => this.changeTitleHandler(car.name)}*/}
-                  {/*/>*/}
-              {/*)*/}
-          {/*}) : null}*/}
-          {car}
+        
+          <h1> {this.props.title}</h1>
+          <div className="input-group mb-3 mx-auto" style={{width: 500}}>
+              <button className="btn btn-secondary mx-auto"
+                      type="button"
+                      onClick={this.toggleCarsHAndler}
+              >
+                  show cars
+              </button>
+          </div>
+          <div style={{}}>
+            {car}
+          </div>
       </div>
     );
   }
