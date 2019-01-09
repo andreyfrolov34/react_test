@@ -64,7 +64,7 @@ class App extends Component {
       <div style={divStyle}>
         
           <h1> {this.props.title}</h1>
-          <div className="input-group mb-3 mx-auto" style={{width: 500}}>
+          <div className="input-group mb-3 mx-auto " style={{width: 500}}>
               <button className="btn btn-secondary mx-auto"
                       type="button"
                       onClick={this.toggleCarsHAndler}
