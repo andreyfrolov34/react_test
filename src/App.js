@@ -22,6 +22,7 @@ class App extends Component {
    }
 
    toggleCarsHAndler = () => {
+
        this.setState({
            showCars : !this.state.showCars
        })
@@ -61,20 +62,15 @@ class App extends Component {
       }
 
     return (
-      <div style={divStyle}>
-        
-          <h1> {this.props.title}</h1>
-          <div className="input-group mb-3 mx-auto " style={{width: 500}}>
-              <button className="btn btn-secondary mx-auto"
-                      type="button"
-                      onClick={this.toggleCarsHAndler}
-              >
-                  show cars
-              </button>
-          </div>
-          <div style={{}}>
-            {car}
-          </div>
+      <div style={divStyle}> 
+        <h1> {this.props.title}</h1>
+        <button className="btn btn-secondary mx-auto mb-3"
+                type="button"
+                onClick={this.toggleCarsHAndler}
+        >
+            show cars
+        </button>
+        {car}
       </div>
     );
   }
