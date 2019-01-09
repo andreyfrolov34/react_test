@@ -16,7 +16,6 @@ import classes from './Car.module.css'
     inputClases.push(classes.bold)
   }
   const style = {
-      boxShadow: '0 4px 5px 0 rgba(0, 0, 0, 0.14)',
       ':hover': {
         boxShadow: '0 4px 15px 0 rgba(0, 0, 0, 0.34)'
       }
